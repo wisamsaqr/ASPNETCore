@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1c218743ff894a8782014001fe923a12" Name="Diagram1">
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.Article" Width="1.5" PointX="5.25" PointY="17.875" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.ArticleCategory" Width="1.5" PointX="3" PointY="25.375" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.Link" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.StaticPage" Width="1.5" PointX="3" PointY="21.125" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_Article_ArticleCategory" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.Slider" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.Menu" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.C__MigrationHistory" Width="1.5" PointX="7.625" PointY="0.75" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.Admin" Width="1.5" PointX="3" PointY="11.875" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.AspNetRole" Width="1.5" PointX="1.5" PointY="8.75" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="18.25" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="30" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.AspNetUser" Width="1.5" PointX="0.75" PointY="12.5" />
+        <EntityTypeShape EntityType="IRPALG1ProjectModel.sysdiagram" Width="1.5" PointX="7.625" PointY="3.75" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_Admin_AspNetUsers" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_Article_Admin" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_Article_Admin1" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_ArticleCategory_Admin" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_ArticleCategory_Admin1" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_Menu_Admin" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_Menu_Admin1" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_Slider_Admin" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_Slider_Admin1" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_StaticPage_Admin" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_StaticPage_Admin1" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="IRPALG1ProjectModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="IRPALG1ProjectModel.AdminLink" />
+        <AssociationConnector Association="IRPALG1ProjectModel.AspNetUserRoles" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

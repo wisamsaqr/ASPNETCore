@@ -1,0 +1,138 @@
+﻿@model IEnumerable<MVCIntro.Models.Account>
+
+@{
+    ViewBag.Title = "Index With Advanced Search";
+}
+
+<form action="/Accounts/IndexWithAdvancedSearch" method="get" class="row">
+    <div class="col-md-4">
+        @Html.TextBox("q", null, new { @class = "form-control", @placeholder = "Search for...", @autofocus = "" })
+    </div>
+    <div class="col-md-2">
+        <select name="Gender" class="form-control">
+            <option value="">All</option>
+            <option value="M" @(ViewBag.Gender == "M" ? "Selected" : "")>Male</option>
+            <option value="F" @(ViewBag.Gender == "F" ? "Selected" : "")>Female</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select name="Active" class="form-control">
+            <option value="">All</option>
+            <option value="true" @(ViewBag.Active == "true" ? "selected" : "")>Active</option>
+            <option value="false" @(ViewBag.Active == "false" ? "selected" : "")>Inactive</option>
+        </select>
+
+        @*@Html.DropDownList("Active", new List<SelectListItem> {
+            new SelectListItem { Text = "Active", Value = "true" },
+            new SelectListItem { Text = "Inactive", Value = "false" }},
+            "All", new { @class = "form-control" })*@
+
+        <!--it should works. it worked at edit, but for some reason it does not work here-->
+        @*@Html.DropDownList("Active", new SelectList(
+            new List<SelectListItem> {
+                new SelectListItem { Text = "Active", Value = "true" },
+                new SelectListItem { Text = "Inactive", Value = "false" }},
+            "Value", "Text", "false"
+            ),
+            "All", new { @class = "form-control" })*@
+
+        @*@Html.DropDownList("Active", new SelectList(
+            new List<SelectListItem> {
+                new SelectListItem { Text = "Active", Value = "true" },
+                new SelectListItem { Text = "Inactive", Value = "false", Selected = true }},
+            "Value", "Text"
+            ),
+            "All", new { @class = "form-control" })*@
+    </div>
+    <div class="col-md-3">
+        @Html.DropDownList("CountryId", (SelectList)ViewBag.Countries, "All Countries", new { @class = "form-control" })
+
+        <!--Way2 to add countries List-->
+        @*<select name="CountryId" class="form-control">
+            <option value="">All Countries</option>
+            @foreach (var c in ViewBag.Countries)
+            {
+                <option value="@c.Id" @(c.Id == ViewBag.CountryId ? "selected" : "")>
+                    @c.Name
+                </option>
+            }
+        </select>*@
+        <!--End Way2 to add countries List-->
+    </div>
+    <div class="col-md-1">
+        <button type="submit" class="btn btn-primary form-control"><i class="glyphicon glyphicon-search"></i></button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @*@item.DOB.Value.ToString("dd/MM/yyy")*@
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Name)
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-primary btn-xs" href="/Accounts/Edit/@item.Id">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-info btn-xs" href="/Accounts/Details/@item.Id">
+                        <i class="glyphicon glyphicon-info-sign"></i>
+                    </a>
+                    <a class="btn btn-danger btn-xs" href="/Accounts/Delete/@item.Id">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                    <a class="btn btn-danger btn-xs" href="/Accounts/DeleteDirectly/@item.Id"
+                       onclick="return confirm('Are you sure?')">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                    <a class="btn btn-warning btn-xs Confirm" href="/Accounts/DeleteDirectly/@item.Id">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

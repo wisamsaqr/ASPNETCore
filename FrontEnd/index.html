@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            
+            margin: 2px;
+            background-color: lime;
+        }
+
+        /*---- ----*/
+        
+        #relativeDiv {
+            background-color: cyan; /*cyan, lime*/
+
+            position: relative;
+            bottom: 40px;
+            right: 80px;
+        }
+
+        /*---- ----*/
+
+        .parent {
+            width: 600px;
+            height: 200px;
+            margin: 2px;
+            background-color: lime;
+            
+            position: relative;
+            left: 100px;
+        }
+
+        #absoluteDiv {
+            background-color: cyan;
+
+            position: absolute;
+            bottom: 20px;
+            right: 80px;
+        }
+
+
+        /*---- ----*/
+
+
+        #fixedDiv {
+            background-color: cyan;
+            position: fixed;
+            bottom: 20px;
+            right: 80px;
+        }
+
+
+        /*---- ----*/
+
+
+        #stickyDiv {
+            background-color: cyan;
+            position: sticky;
+            bottom: 40px;
+            right: 80px;
+        }
+    </style>
+
+    <title>Wisam Saqr</title>
+</head>
+<body>
+    <h1>hi thtere..</h1>
+
+    <!--#region relative-->
+    <div id="relativeDiv"></div>
+    <div></div>
+    <!--#endregion -->
+
+
+    <hr />
+
+
+    <!--#region absolute-->
+    <div class="parent">
+        <div id="absoluteDiv"></div>
+    </div>
+
+    <div></div>
+    <!--#endregion -->
+
+
+    <hr />
+
+
+    <!--#region fixed-->
+    <div id="fixedDiv"></div>
+
+    <div></div>
+    <!--#endregion -->
+
+
+    <hr />
+
+
+    <!--#region sticky-->
+    <div id="stickyDiv"></div>
+
+    <div></div>
+    <!--#endregion -->
+</body>
+</html>

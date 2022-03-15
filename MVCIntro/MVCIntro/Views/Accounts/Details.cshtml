@@ -1,0 +1,68 @@
+﻿@model MVCIntro.Models.Account
+
+@{
+    ViewBag.Title = "Account Details";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            Email
+            @*@Html.DisplayNameFor(model => model.Email)*@
+        </dt>
+
+        <dd>
+            <a href="mailto:@Model.Email">@Model.Email</a>
+            @*@Html.DisplayFor(model => model.Email)*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+        <dt>
+            Country
+            @*@Html.DisplayNameFor(model => model.Country.Name)*@
+        </dt>
+
+        <dd>
+            @Model.Country.Name
+            @*@Html.DisplayFor(model => model.Country.Name)*@
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a class="btn btn-info" href="/Accounts/Edit/@Model.Id">Edit</a>
+@*    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+</p>

@@ -1,0 +1,91 @@
+﻿@{
+    var lang = ViewContext.RouteData.Values["lang"] as string;
+    var otherLang = lang == "en" ? "ar" : "en";
+
+    //Wrong, because if there were other substrings in the url equivalent to lang (the replaced string), all of them would be replaced too
+    //var otherLangURL = Request.Url.ToString().Replace("/" + lang, "/" + otherLang);
+
+    //The right code for replacing
+    /* We have a problem. Since we use the defaults values of routing, then when not determining the language it would be en
+     * so as long as the home page is always requested with defaults and never be requested using explicit ar the url keeps
+     * being in default format, so the changing language anchor url (which reffers to the current page) inside pages with
+     * default url does not have lang segment, so when trying to replace the current language inside the url (to generate
+     * a new url for the current page with the other language) there wpuld be no lang segment to get replaced, which means
+     * the url will stay as it is with no change (url with defaults, and this url would direct to the current page with
+     * default language which is english).
+     * 
+     * So we will cancel this code and use ActionLink...
+     */
+    //System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(lang);
+    //string otherLangURL = regex.Replace(Request.Url.ToString(), otherLang, 1);
+    }
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Resources.Lang.MainTitle</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @if (lang == "ar")
+    {
+        <link href="~/Content/bootstrap-rtl/dist/css/bootstrap-rtl.css" rel="stylesheet" />
+    }
+    </head>
+    <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(Resources.Lang.AppName, "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink(Resources.Lang.Home, "Index", "Home")</li>
+                    <li>@Html.ActionLink(Resources.Lang.About, "About", "Home")</li>
+                    <li>@Html.ActionLink(Resources.Lang.Contact, "Contact", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink((ViewContext.RouteData.Values["lang"].ToString() == "en" ? "عربي" : "English"),
+                            ViewContext.RouteData.Values["action"].ToString(),
+                            ViewContext.RouteData.Values["controller"].ToString(),
+                            new { lang = (ViewContext.RouteData.Values["lang"].ToString() == "en" ? "ar" : "en") },
+                            null
+                        )
+
+                        @*@Html.ActionLink((ViewContext.RouteData.Values["lang"].ToString() == "en" ? "عربي" : "English"),
+                            ViewContext.RouteData.Values["action"].ToString(),
+                            new { lang = (ViewContext.RouteData.Values["lang"].ToString() == "en" ? "ar" : "en"),
+                            controller = ViewContext.RouteData.Values["controller"].ToString()}
+                        )*@
+
+                        @*<a href="@Url.Action(ViewContext.RouteData.Values["action"].ToString(),
+                                    ViewContext.RouteData.Values["controller"].ToString(),
+                                    new { lang = (ViewContext.RouteData.Values["lang"].ToString() == "en" ? "ar" : "en") })">
+                            @(ViewContext.RouteData.Values["lang"].ToString() == "en" ? "عربي" : "English")
+                        </a>*@
+                    </li>
+                    @*<li><a href="@otherLangURL">@(otherLang == "ar" ? "عربي" : "English")</a></li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - @Resources.Lang.MainTitle</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    </body>
+    </html>

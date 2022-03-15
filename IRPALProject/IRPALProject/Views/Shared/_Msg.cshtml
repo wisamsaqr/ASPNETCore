@@ -1,0 +1,31 @@
+﻿@if (TempData["msg"] != null)
+{
+    var msg = TempData["msg"].ToString();
+    var msgClass = "alert alert-";
+    if (msg.StartsWith("s:"))
+    {
+        msgClass += "success";
+    }
+    else if (msg.StartsWith("w:"))
+    {
+        msgClass += "warning";
+    }
+    else if (msg.StartsWith("d:"))
+    {
+        msgClass += "danger";
+    }
+    else
+    {
+        msgClass += "info";
+    }
+    msg = msg.Substring(2);
+
+    <div class="@msgClass msg">
+        @msg
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<div class="msg"></div>

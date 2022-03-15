@@ -1,0 +1,172 @@
+﻿@model IEnumerable<MVCIntro.Models.Account>
+
+@{
+    ViewBag.Title = "Index With Search";
+}
+
+<form method="get" action="/Accounts/IndexWithSearchPagination" class="row">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search for..." value="@ViewBag.q" autofocus />
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Go!</button>
+            </span>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @*@item.DOB.Value.ToString("dd/MM/yyy")*@
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Name)
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-primary btn-xs" href="/Accounts/Edit/@item.Id">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-info btn-xs" href="/Accounts/Details/@item.Id">
+                        <i class="glyphicon glyphicon-info-sign"></i>
+                    </a>
+                    <a class="btn btn-danger btn-xs" href="/Accounts/Delete/@item.Id">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                    <a class="btn btn-danger btn-xs" href="/Accounts/DeleteDirectly/@item.Id"
+                       onclick="return confirm('Are you sure?')">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                    <a class="btn btn-warning btn-xs Confirm" href="/Accounts/DeleteDirectly/@item.Id">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!--Pagination-->
+@{
+    string ActionURL = ViewBag.ActionURL;
+    int PageId = ViewBag.PageId;
+    int PagesCount = ViewBag.PagesCount;
+
+    int PagesBeforeOrAfterTheCurrentPage = ViewBag.PagesBeforeOrAfterTheCurrentPage;
+    int Start, End;
+
+    if (PagesCount <= (PagesBeforeOrAfterTheCurrentPage * 2 + 1))   //Pages count less than default pagination elements
+    {
+        Start = 0;
+        End = PagesCount - 1;
+    }
+    else if (PageId <= PagesBeforeOrAfterTheCurrentPage)    //We are at the first pages
+    {
+        Start = 0;
+        End = PagesBeforeOrAfterTheCurrentPage * 2;
+    }
+    else if (PageId >= PagesCount - PagesBeforeOrAfterTheCurrentPage)   //We are at the last pages
+    {
+        Start = PagesCount - 1 - PagesBeforeOrAfterTheCurrentPage * 2;
+        End = PagesCount - 1;
+    }
+    else    //We are at the middle of the pages
+    {
+        Start = PageId - PagesBeforeOrAfterTheCurrentPage;
+        End = PageId + PagesBeforeOrAfterTheCurrentPage;
+    }
+
+    <ul class="pagination pagination-lg">
+        @if (PageId == 0)   //for Previous buttons at the first page
+        {
+            <li class="disabled">
+                <span>
+                    <i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-left"></i>
+                </span>
+            </li>
+            <li class="disabled"><span><i class="glyphicon glyphicon-chevron-left"></i></span></li>
+        }
+        else   //for Previous buttons after the first page
+        {
+            <li>
+                <a href="@ActionURL?q=@ViewBag.q&PageId=1">
+                    <i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-left"></i>
+                </a>
+            </li>
+            <li><a href="@ActionURL?q=@ViewBag.q&PageId=@PageId"><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+        }
+
+        @for (int i = Start; i <= End; i++)
+        {
+            if (i == PageId)
+            {
+                <li class="active"><span>@(i + 1)</span></li>
+            }
+            else
+            {
+                <li><a href="@ActionURL?q=@ViewBag.q&PageId=@(i + 1)">@(i + 1)</a></li>
+            }
+        }
+
+        @if (PageId == PagesCount - 1)  //For Next buttons at the last page
+        {
+            <li class="disabled"><span><i class="glyphicon glyphicon-chevron-right"></i></span></li>
+            <li class="disabled">
+                <span>
+                    <i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i>
+                </span>
+            </li>
+        }
+        else   //For Next buttons before the last page
+        {
+            <li><a href="@ActionURL?q=@ViewBag.q&PageId=@(PageId+2)"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+            <li>
+                <a href="@ActionURL?q=@ViewBag.q&PageId=@(PagesCount)">
+                    <i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+            </li>
+        }
+    </ul>
+}

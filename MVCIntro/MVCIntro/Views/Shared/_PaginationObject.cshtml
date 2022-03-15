@@ -1,0 +1,55 @@
+﻿@{
+    MVCIntro.Controllers.Pagination Pagination = (MVCIntro.Controllers.Pagination)ViewBag.Pagination;
+
+    <ul class="pagination pagination-lg">
+        @if (Pagination.PageId == 0)
+        {
+            <li class="disabled">
+                <span>
+                    <i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-left"></i>
+                </span>
+            </li>
+            <li class="disabled"><span><i class="glyphicon glyphicon-chevron-left"></i></span></li>
+        }
+        else
+        {
+            <li>
+                <a href="@(Pagination.ActionURL)1">
+                    <i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-left"></i>
+                </a>
+            </li>
+            <li><a href="@Pagination.ActionURL@Pagination.PageId"><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+        }
+
+        @for (int i = Pagination.Start; i <= Pagination.End; i++)
+        {
+            if (i == Pagination.PageId)
+            {
+                <li class="active"><span>@(i + 1)</span></li>
+            }
+            else
+            {
+                <li><a href="@Pagination.ActionURL@(i + 1)">@(i + 1)</a></li>
+            }
+        }
+
+        @if (Pagination.PageId == Pagination.PagesCount - 1)
+        {
+            <li class="disabled"><span><i class="glyphicon glyphicon-chevron-right"></i></span></li>
+            <li class="disabled">
+                <span>
+                    <i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i>
+                </span>
+            </li>
+        }
+        else
+        {
+            <li><a href="@Pagination.ActionURL@(Pagination.PageId+2)"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+            <li>
+                <a href="@Pagination.ActionURL@(Pagination.PagesCount)">
+                    <i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+            </li>
+        }
+    </ul>
+}

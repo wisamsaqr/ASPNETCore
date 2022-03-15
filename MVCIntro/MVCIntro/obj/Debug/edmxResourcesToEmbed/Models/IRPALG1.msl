@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IRPALG1ModelStoreContainer" CdmEntityContainer="IRPALG1Entities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="IRPALG1Model.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="IRPALG1Model.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Iso2" ColumnName="Iso2" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IRPALG1Model.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

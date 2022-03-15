@@ -1,0 +1,64 @@
+﻿@model IEnumerable<IRPALProject.Models.StaticPage>
+@{
+    ViewBag.Title = "الصفحات الثابتة";
+}
+
+@using (Html.BeginForm("Index", "StaticPage", new { area = "CMS" }, FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" name="q" value="@ViewBag.q" class="form-control" placeholder="بحث عن...">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">ابحث!</button>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <a href="/CMS/StaticPage/Add" class="btn btn-success pull-right">
+                <i class="fa fa-plus"></i>
+                إضافة صفحة جديدة
+            </a>
+        </div>
+    </div>
+}
+
+<hr />
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>عنوان الصفحة</th>
+                <th>تم النشر</th>
+                <th>تاريخ النشر</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.Title)</td>
+                    <td>@Html.DisplayFor(model => item.Published)</td>
+                    <td>@Html.DisplayFor(model => item.InsertedAt)</td>
+                    <td>
+                        <a href="/CMS/StaticPage/Edit/@item.Id" class="btn btn-primary btn-xs">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a href="/CMS/StaticPage/Delete/@item.Id" class="btn btn-warning btn-xs Confirm">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @Html.Partial("_Pagination")
+}
+else
+{
+    <div class="alert alert-info">@Resources.Lang.NoItemsMsg</div>
+}

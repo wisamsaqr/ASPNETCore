@@ -1,0 +1,34 @@
+﻿@model MVCIntro.Models.Country
+
+@{
+    ViewBag.Title = "Edit Country";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Iso2)
+        @Html.TextBoxFor(model => model.Iso2, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Iso2)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Code)
+        @Html.TextBoxFor(model => model.Code, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Code)
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Save" />
+        @Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-default" })
+    </div>
+}

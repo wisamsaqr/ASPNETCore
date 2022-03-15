@@ -1,0 +1,100 @@
+﻿@model IRPALProject.Models.Article
+@{
+    ViewBag.Title = "تعديل مقال";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, "عنوان المقال", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @autofocus = "autofocus" })
+                @Html.ValidationMessageFor(model => model.Title, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Slug, "رابط العنوان", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Slug, new { @class = "form-control", @placeholder = "رابط العنوان" })
+                @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryId, "تصنيف العنوان", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CategoryId, (SelectList)ViewBag.ArticleCategories, "اختر تصنيف المقال", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ArticleCategory, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Summary, "ملخص المقال", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Summary, new { @class = "form-control summernote", @rows = 4 })
+                @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Details, "تفاصيل المقال", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Details, new { @class = "form-control summernote", @rows = 8 })
+                @Html.ValidationMessageFor(model => model.Details, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, "صورة المقال", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Img" />
+                @if (Model != null)
+                {
+                    if (!string.IsNullOrEmpty(Model.Image))
+                    {
+                        <br />
+                        <img src="~/Content/Images/Thumb/@Model.Image" class="img-thumbnail img-rounded" />
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <label>
+                    @Html.CheckBoxFor(model => model.Published, new { @class = "form-control" })
+                    تم النشر
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-offset-2">
+            <input type="submit" value="حفظ" class="btn btn-primary" />
+            @Html.ActionLink("عودة إلى قائمة المقالات", "Index", null, new { @class = "btn btn-default" })
+        </div>
+
+    </div>
+}
+
+@section styles{
+    <link href="~/Content/Summernote/dist/summernote.css" rel="stylesheet" />
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/Summernote/dist/summernote.js"></script>
+    <script>
+        //$(document).ready(function () {});
+
+        $(function ()
+        {
+            $(".summernote").summernote({height:450});
+        });
+    </script>
+}

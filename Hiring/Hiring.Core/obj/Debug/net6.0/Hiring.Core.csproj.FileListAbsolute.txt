@@ -1,0 +1,12 @@
+G:\LAB\MVC\Hiring\Hiring.Core\bin\Debug\net6.0\Hiring.Core.deps.json
+G:\LAB\MVC\Hiring\Hiring.Core\bin\Debug\net6.0\Hiring.Core.dll
+G:\LAB\MVC\Hiring\Hiring.Core\bin\Debug\net6.0\Hiring.Core.pdb
+G:\LAB\MVC\Hiring\Hiring.Core\obj\Debug\net6.0\Hiring.Core.csproj.AssemblyReference.cache
+G:\LAB\MVC\Hiring\Hiring.Core\obj\Debug\net6.0\Hiring.Core.GeneratedMSBuildEditorConfig.editorconfig
+G:\LAB\MVC\Hiring\Hiring.Core\obj\Debug\net6.0\Hiring.Core.AssemblyInfoInputs.cache
+G:\LAB\MVC\Hiring\Hiring.Core\obj\Debug\net6.0\Hiring.Core.AssemblyInfo.cs
+G:\LAB\MVC\Hiring\Hiring.Core\obj\Debug\net6.0\Hiring.Core.csproj.CoreCompileInputs.cache
+G:\LAB\MVC\Hiring\Hiring.Core\obj\Debug\net6.0\Hiring.Core.dll
+G:\LAB\MVC\Hiring\Hiring.Core\obj\Debug\net6.0\refint\Hiring.Core.dll
+G:\LAB\MVC\Hiring\Hiring.Core\obj\Debug\net6.0\Hiring.Core.pdb
+G:\LAB\MVC\Hiring\Hiring.Core\obj\Debug\net6.0\ref\Hiring.Core.dll

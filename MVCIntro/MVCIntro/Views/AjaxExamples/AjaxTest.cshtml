@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Ajax Example";
+}
+
+<pre>
+jQuery.ajax( url [, settings ] )
+url
+Type: String
+A string containing the URL to which the request is sent.
+settings
+Type: PlainObject
+A set of key/value pairs that configure the Ajax request. All settings are optional. A default can be set for any option with $.ajaxSetup(). See jQuery.ajax( settings ) below for a complete list of all settings.
+</pre>
+
+<button id="btn1" class="btn btn-default">
+    Post # 1
+</button>
+
+<button id="btn2" class="btn btn-primary">
+    Post XML <span></span>
+</button>
+
+<button id="btn3" class="btn btn-danger">
+    Post JSON <span></span>
+</button>
+
+<button id="btn4" class="btn btn-success">
+    Get # 1
+</button>
+
+<button id="btn5" class="btn btn-info">
+    Post JSON Single Object
+</button>
+
+<span class="wait"></span>
+
+<hr />
+
+<div id="divLoad" class="jumbotron">
+
+</div>
+
+@section Scripts{
+    <script>
+        $(function ()
+        {
+            $("#btn1").click(function ()
+            {
+                $.ajax
+                ({
+                    data: { age: 50, gender: "Female" },
+                    type: "POST",
+                    url: "/AjaxExamples/PostRequestContent",
+                    success: function (data)
+                    {
+                        $("#divLoad").html(data);
+                    }
+                });
+            });
+
+
+            $("#btn2").click(function ()
+            {
+                $.ajax
+                ({
+                    url: "/AjaxExamples/XmlAction",
+                    type: "POST",
+                    datatype:"XML",
+                    success: function (xml)
+                    {
+                        $("#divLoad").html("");
+                        $(xml).find("person").each(function ()
+                        {
+                            $("#divLoad").append("Name: <b>" +
+                                $(this).find("name").text() + "</b>");
+                            $("#divLoad").append("<br>Age: <b>" +
+                                $(this).find("age").text() + "</b>");
+                            $("#divLoad").append("<br>Edu: <b>" +
+                                $(this).find("edu").text() + "</b><hr>");
+                        });
+                    }
+                });
+            });
+
+
+            $("#btn4").click(function ()
+            {
+                $.ajax
+                ({
+                    url: "/AjaxExamples/GetRequestContent",
+                    type: "GET",
+                    data: { age: 50, gender: "Female" },
+                    success: function (data)
+                    {
+                        $("#divLoad").html(data);
+                    }
+                });
+            });
+
+
+            $("#btn3").click(function ()
+            {
+                $.ajax
+                ({
+                    url: "/AjaxExamples/JsonAction",
+                    type: "POST",
+                    datatype: "JSON",
+                    success: function (json)
+                    {
+                        $("#divLoad").html("");
+                        $(json).each(function ()
+                        {
+                            $("#divLoad").append("Name: <b>" +
+                               this.Name + "</b>");
+                            $("#divLoad").append("<br>Age: <b>" +
+                               this.Age + "</b>");
+                            $("#divLoad").append("<br>Edu: <b>" +
+                               this.Edu + "</b><hr>");
+                        });
+                    }
+                });
+            });
+
+
+            $("#btn5").click(function ()
+            {
+                $.ajax(
+                {
+                    url: "/AjaxExamples/JsonActionSingleObject",
+                    type: "GET",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function(json)
+                    {
+                        $("#divLoad").html(
+                            "Name: <b>" + $(json).Name + "</b><br />" +
+                            "Age: <b>" + $(json).Age + "</b><br />" +
+                            "Edu: <b>" + $(json).Edu + "</b><br />"
+                            //+ "Country: <b>" + $(json).Address.Country + "</b><br />" +
+                            //"City: <b>" + $(json).Address.City + "</b>"
+                        );
+                    }
+                });
+            });
+
+            //// Next methods by default is excuted according to the situation ////
+
+            $(document).ajaxStart(function ()
+            {
+                $(".wait").text("Wait...");
+            });
+
+            $(document).ajaxStop(function ()
+            {
+                $(".wait").text("");
+            });
+
+            $(document).ajaxError(function ()
+            {
+                $(".wait").text("");
+            });
+    });
+    </script>
+}

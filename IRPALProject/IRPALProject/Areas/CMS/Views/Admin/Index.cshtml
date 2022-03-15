@@ -1,0 +1,76 @@
+﻿@model IEnumerable<IRPALProject.Models.Admin>
+@{
+    ViewBag.Title = "المستخدمين";
+}
+
+@using (Html.BeginForm("Index", "Admin", new { area = "CMS" }, FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" name="q" value="@ViewBag.q" class="form-control" placeholder="بحث عن...">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">ابحث!</button>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <a href="/CMS/Admin/Add" class="btn btn-success pull-right">
+                <i class="fa fa-plus"></i>
+                إضافة مستخدم جديد
+            </a>
+        </div>
+    </div>
+}
+
+<hr />
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>الاسم الكامل</th>
+                <th>الإيميل</th>
+                <th>الهاتف</th>
+                <th>فعال</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Mobile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Active)
+                    </td>
+                    <td>
+                        <a title="صلاحيات المستخدم - @item.FullName" href="/CMS/Admin/Permission/@Html.DisplayFor(model => item.Id)" class="iFrame btn btn-warning btn-xs">
+                            <i class="glyphicon glyphicon-lock"></i>
+                        </a>
+                        <a href="/CMS/Admin/Edit/@Html.DisplayFor(model => item.Id)" class="btn btn-primary btn-xs">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a href="~/CMS/Admin/Delete/@Html.DisplayFor(model => item.Id)" class="btn btn-danger btn-xs Confirm">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.Partial("_Pagination")
+}
+else
+{
+    <div class="alert alert-info">@Resources.Lang.NoItemsMsg</div>
+}

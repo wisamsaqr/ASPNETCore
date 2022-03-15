@@ -1,0 +1,85 @@
+﻿@{
+    var Db = ViewBag.Db as IRPALProject.Models.IRPALG1ProjectEntities;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - مشروع دورة IRPAL</title>
+    <link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/bootstrap-rtl/dist/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("مشروع دورة IRPAL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @{
+                        var menus = Db.Menus.Where
+                        (
+                            m =>
+                            m.IsDelete == false &&
+                            m.Active == true &&
+                            m.ParentId == 0
+                        );
+
+                        foreach (var menu in menus)
+                        {
+                            var subMenus = Db.Menus.Where
+                            (
+                                m =>
+                                m.IsDelete == false &&
+                                m.Active == true &&
+                                m.ParentId == menu.Id
+                            );
+
+                            if (subMenus.Any())
+                            {
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@menu.Title<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var subMenu in subMenus)
+                                        {
+                                            <li><a @(subMenu.NewWindow ? "target=_blank" : "") href="@subMenu.URL">@subMenu.Title</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><a @(menu.NewWindow ? "target=_blank" : "") href="@menu.URL">@menu.Title</a></li>
+                            }
+                        }
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @Html.Partial("_Msg")
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - جميع الحقوق محفوظة لدورة IRPAL</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

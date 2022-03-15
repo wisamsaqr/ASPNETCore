@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Post Example";
+}
+
+<pre>jQuery.post( url [, data ] [, success ] [, dataType ] )
+    url
+Type: String
+A string containing the URL to which the request is sent.
+data
+Type: PlainObject or String
+A plain object or string that is sent to the server with the request.
+success
+Type: Function( PlainObject data, String textStatus, jqXHR jqXHR )
+A callback function that is executed if the request succeeds. Required if dataType is provided, but can be null in that case.
+dataType
+Type: String
+The type of data expected from the server. Default: Intelligent Guess (xml, json, script, text, html).
+
+</pre>
+
+
+
+<button id="btn1" class="btn btn-default">
+    Post # 1
+</button>
+
+<button id="btn2" class="btn btn-primary">
+    Post XML <span></span>
+</button>
+
+<button id="btn3" class="btn btn-danger">
+    Post JSON <span></span>
+</button>
+<hr />
+<div id="divLoad" class="jumbotron">
+
+</div>
+@section Scripts{
+    <script>
+        $(function () {
+            $("#btn1").click(function ()
+            {
+                $.post("/AjaxExamples/PostRequestContent",
+                    { age: 55, gender: "Female" },
+                    function (data)
+                    {
+                        $("#divLoad").html(data);
+                    });
+            });
+
+
+            $("#btn2").click(function () {
+                $("#btn2 span").text("Loading...");
+                $.post("/AjaxExamples/XmlAction",
+                    function (xml)
+                    {
+                        $("#divLoad").html("");
+                        $(xml).find("person").each(function () {
+                            $("#divLoad").append("Name: <b>" +
+                                $(this).find("name").text() + "</b>");
+                            $("#divLoad").append("<br>Age: <b>" +
+                                $(this).find("age").text() + "</b>");
+                            $("#divLoad").append("<br>Edu: <b>" +
+                                $(this).find("edu").text() + "</b><hr>");
+                        });
+                        $("#btn2 span").text("");
+                    }, "XML");
+            });
+
+
+            $("#btn3").click(function ()
+            {
+                $.post("/AjaxExamples/JsonAction",
+                    function (json) {
+                        $("#divLoad").html("");
+                        /*alert(json.length + " | " +
+                            json[0].Name);*/
+                        $(json).each(function () {
+                            $("#divLoad").append("Name: <b>" +
+                               this.Name + "</b>");
+                            $("#divLoad").append("<br>Age: <b>" +
+                               this.Age + "</b>");
+                            $("#divLoad").append("<br>Edu: <b>" +
+                               this.Edu + "</b><hr>");
+                        });
+                    },
+                    "Json");
+            });
+        });
+    </script>
+}

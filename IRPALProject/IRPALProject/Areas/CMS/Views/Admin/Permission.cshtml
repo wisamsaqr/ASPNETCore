@@ -1,0 +1,96 @@
+﻿@model IRPALProject.Models.Admin
+@{
+    var Db = ViewBag.Db as IRPALProject.Models.IRPALG1ProjectEntities;
+    ViewBag.Title = "صلاحيات المستخدم - " + Model.FullName;
+    Layout = "~/Areas/CMS/Views/Shared/_IFrameLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <ul id="permission-list" class="list-unstyled">
+                    @{
+                        var links = Db.Links.Where(l => l.ParentId == 0);
+                        foreach (var link in links)
+                        {
+                            var adminHasCurrentLink = Model.Links.Any(l => l.Id == link.Id);
+                            <li>
+                                <label>
+                                    <input name="LinkIds" type="checkbox" value="@link.Id" @(adminHasCurrentLink ? "checked" : "") />
+                                    <b>@link.Title</b>
+                                </label>
+                                <ul class="list-unstyled">
+                                    @{ 
+                                        var subLinks = Db.Links.Where(l => l.ParentId == link.Id);
+                                        foreach (var subLink in subLinks)
+                                        {
+                                            bool adminHasCurrentSubLink = Model.Links.Any(l => l.Id == subLink.Id);
+                                            <li>
+                                                <label>
+                                                    <input name="LinkIds" type="checkbox" value="@subLink.Id" @(adminHasCurrentSubLink ? "checked" : "") />
+                                                    <b>@subLink.Title</b>
+                                                </label>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="حفظ الصلاحيات" class="btn btn-success" />
+            </div>
+        </div>
+
+    </div>
+}
+
+@section scripts{
+    <script>
+        $(function ()
+        {
+            $("#permission-list :checkbox").click(function ()
+            {
+                $(this).parent().next().find(":checkbox").prop("checked", $(this).prop("checked"));
+
+
+
+                $(this).parents("ul").prev().find(":checkbox").prop("checked",
+                    $(this).closest("ul").find(":checked").size() > 0);
+
+                //also correct
+                //$(this).parents("ul").prev().find(":checkbox").prop("checked",
+                //    ($(this).closest("ul").find(":checked").size() > 0 ? "checked" : ""));
+
+                //also correct
+                //$(this).closest("ul").prev().find(":checkbox").prop("checked",
+                //    ($(this).closest("ul").find(":checked").size() > 0 ? "checked" : ""));
+
+
+                //trainer
+                //$(this).parents("ul").each(function ()
+                //{
+                //    $(this).prev().find(":checkbox").prop("checked",
+                //        $(this).find(":checked").size() > 0);
+                //});
+
+
+
+
+
+                //$(this).parents("ul").css("border", "2px solid red");
+            });
+        });
+    </script>
+}

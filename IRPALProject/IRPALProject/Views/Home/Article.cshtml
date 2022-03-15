@@ -1,0 +1,31 @@
+﻿@model IRPALProject.Models.Article
+
+@{
+    ViewBag.Title = "Article";
+}
+
+<h2 class="page-header">@Model.Title</h2>
+<div>
+    @if (!string.IsNullOrEmpty(Model.Image))
+    {
+        <img class="img-responsive img-rounded img-thumbnail pull-left" src="~/Content/Images/Medium/@Model.Image" />
+    }
+    @Html.Raw(Model.Details)
+</div>
+<div class="clearfix"></div>
+
+<hr />
+
+<h2>اقرأ أيضًا</h2>
+<div class="row">
+    @foreach (var article in ViewBag.otherArticles)
+    {
+        <div class="col-md-4">
+            <h3>@article.Title</h3>
+            <p>
+                @Html.Raw(article.Summary)
+            </p>
+            <p><a class="btn btn-info" href="/Home/Article/@article.Slug">للمزيد &raquo;</a></p>
+        </div>
+    }
+</div>

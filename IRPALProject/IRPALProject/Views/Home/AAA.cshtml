@@ -1,0 +1,32 @@
+﻿@model IRPALProject.Models.Article
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AAA</title>
+    <link href="~/Content/Summernote/dist/summernote.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Content/Summernote/dist/summernote.js"></script>
+    <script>
+        //$(document).ready(function () {});
+
+        $(function ()
+        {
+            $(".summernote").summernote({height:450});
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <div>
+            @Html.TextAreaFor(model => model.Summary, new { @class = "form-control summernote", rows = 4 })
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿@using MVCIntro.Controllers
+
+@{ 
+    InView iv = new InView();
+}
+
+@iv.X
+
+@{
+    ViewBag.Title = "Action";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ActionLink("ActionII", "ActionII")
+}

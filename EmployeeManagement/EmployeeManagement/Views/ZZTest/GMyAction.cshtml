@@ -1,0 +1,14 @@
+﻿@using EmployeeManagement.ZZTestModels
+@model List<int>
+
+@{
+    var xx = Model;
+}
+
+<form method="post">
+    <input type="text" asp-for="@xx[0]" />
+    <input type="text" asp-for="@xx[1]" />
+    <input type="text" asp-for="@xx[2]" />
+
+    <input type="submit" />
+</form>

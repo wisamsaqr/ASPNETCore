@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IRPALG1ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="IRPALG1ProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Articles" EntityType="IRPALG1ProjectModel.Article" />
+    <EntitySet Name="ArticleCategories" EntityType="IRPALG1ProjectModel.ArticleCategory" />
+    <EntitySet Name="Links" EntityType="IRPALG1ProjectModel.Link" />
+    <EntitySet Name="StaticPages" EntityType="IRPALG1ProjectModel.StaticPage" />
+    <AssociationSet Name="FK_Article_ArticleCategory" Association="IRPALG1ProjectModel.FK_Article_ArticleCategory">
+      <End Role="ArticleCategory" EntitySet="ArticleCategories" />
+      <End Role="Article" EntitySet="Articles" />
+    </AssociationSet>
+    <EntitySet Name="Sliders" EntityType="IRPALG1ProjectModel.Slider" />
+    <EntitySet Name="Menus" EntityType="IRPALG1ProjectModel.Menu" />
+    <EntitySet Name="C__MigrationHistory" EntityType="IRPALG1ProjectModel.C__MigrationHistory" />
+    <EntitySet Name="Admins" EntityType="IRPALG1ProjectModel.Admin" />
+    <EntitySet Name="AspNetRoles" EntityType="IRPALG1ProjectModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="IRPALG1ProjectModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="IRPALG1ProjectModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="IRPALG1ProjectModel.AspNetUser" />
+    <EntitySet Name="sysdiagrams" EntityType="IRPALG1ProjectModel.sysdiagram" />
+    <AssociationSet Name="FK_Admin_AspNetUsers" Association="IRPALG1ProjectModel.FK_Admin_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Admin" EntitySet="Admins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_Admin" Association="IRPALG1ProjectModel.FK_Article_Admin">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Article" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_Admin1" Association="IRPALG1ProjectModel.FK_Article_Admin1">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Article" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleCategory_Admin" Association="IRPALG1ProjectModel.FK_ArticleCategory_Admin">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="ArticleCategory" EntitySet="ArticleCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArticleCategory_Admin1" Association="IRPALG1ProjectModel.FK_ArticleCategory_Admin1">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="ArticleCategory" EntitySet="ArticleCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Admin" Association="IRPALG1ProjectModel.FK_Menu_Admin">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Menu" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Admin1" Association="IRPALG1ProjectModel.FK_Menu_Admin1">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Menu" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slider_Admin" Association="IRPALG1ProjectModel.FK_Slider_Admin">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Slider" EntitySet="Sliders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slider_Admin1" Association="IRPALG1ProjectModel.FK_Slider_Admin1">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Slider" EntitySet="Sliders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StaticPage_Admin" Association="IRPALG1ProjectModel.FK_StaticPage_Admin">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="StaticPage" EntitySet="StaticPages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StaticPage_Admin1" Association="IRPALG1ProjectModel.FK_StaticPage_Admin1">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="StaticPage" EntitySet="StaticPages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="IRPALG1ProjectModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="IRPALG1ProjectModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="AdminLink" Association="IRPALG1ProjectModel.AdminLink">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Link" EntitySet="Links" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="IRPALG1ProjectModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Slug" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Summary" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="Published" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="InsertedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="InsertingAdminId" Type="Int32" />
+    <Property Name="UpdatingAdminId" Type="Int32" />
+    <NavigationProperty Name="ArticleCategory" Relationship="IRPALG1ProjectModel.FK_Article_ArticleCategory" FromRole="Article" ToRole="ArticleCategory" />
+    <NavigationProperty Name="Admin" Relationship="IRPALG1ProjectModel.FK_Article_Admin" FromRole="Article" ToRole="Admin" />
+    <NavigationProperty Name="Admin1" Relationship="IRPALG1ProjectModel.FK_Article_Admin1" FromRole="Article" ToRole="Admin" />
+  </EntityType>
+  <EntityType Name="ArticleCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="InsertedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="InsertingAdminId" Type="Int32" />
+    <Property Name="UpdatingAdminId" Type="Int32" />
+    <NavigationProperty Name="Articles" Relationship="IRPALG1ProjectModel.FK_Article_ArticleCategory" FromRole="ArticleCategory" ToRole="Article" />
+    <NavigationProperty Name="Admin" Relationship="IRPALG1ProjectModel.FK_ArticleCategory_Admin" FromRole="ArticleCategory" ToRole="Admin" />
+    <NavigationProperty Name="Admin1" Relationship="IRPALG1ProjectModel.FK_ArticleCategory_Admin1" FromRole="ArticleCategory" ToRole="Admin" />
+  </EntityType>
+  <EntityType Name="Link">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="ShowInMenu" Type="Boolean" />
+    <Property Name="OrderId" Type="Int32" />
+    <NavigationProperty Name="Admins" Relationship="IRPALG1ProjectModel.AdminLink" FromRole="Link" ToRole="Admin" />
+  </EntityType>
+  <EntityType Name="StaticPage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Slug" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Published" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="InsertedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="InsertingAdminId" Type="Int32" />
+    <Property Name="UpdatingAdminId" Type="Int32" />
+    <NavigationProperty Name="Admin" Relationship="IRPALG1ProjectModel.FK_StaticPage_Admin" FromRole="StaticPage" ToRole="Admin" />
+    <NavigationProperty Name="Admin1" Relationship="IRPALG1ProjectModel.FK_StaticPage_Admin1" FromRole="StaticPage" ToRole="Admin" />
+  </EntityType>
+  <Association Name="FK_Article_ArticleCategory">
+    <End Type="IRPALG1ProjectModel.ArticleCategory" Role="ArticleCategory" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.Article" Role="Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArticleCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="NewWindow" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="InsertedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="InsertingAdminId" Type="Int32" />
+    <Property Name="UpdatingAdminId" Type="Int32" />
+    <NavigationProperty Name="Admin" Relationship="IRPALG1ProjectModel.FK_Slider_Admin" FromRole="Slider" ToRole="Admin" />
+    <NavigationProperty Name="Admin1" Relationship="IRPALG1ProjectModel.FK_Slider_Admin1" FromRole="Slider" ToRole="Admin" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="URL" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="NewWindow" Type="Boolean" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="InsertedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="InsertingAdminId" Type="Int32" />
+    <Property Name="UpdatingAdminId" Type="Int32" />
+    <NavigationProperty Name="Admin" Relationship="IRPALG1ProjectModel.FK_Menu_Admin" FromRole="Menu" ToRole="Admin" />
+    <NavigationProperty Name="Admin1" Relationship="IRPALG1ProjectModel.FK_Menu_Admin1" FromRole="Menu" ToRole="Admin" />
+  </EntityType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="InsertedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+    <Property Name="InsertingAdminId" Type="Int32" />
+    <Property Name="UpdatingAdminId" Type="Int32" />
+    <Property Name="AspNetUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="IRPALG1ProjectModel.FK_Admin_AspNetUsers" FromRole="Admin" ToRole="AspNetUser" />
+    <NavigationProperty Name="Articles" Relationship="IRPALG1ProjectModel.FK_Article_Admin" FromRole="Admin" ToRole="Article" />
+    <NavigationProperty Name="Articles1" Relationship="IRPALG1ProjectModel.FK_Article_Admin1" FromRole="Admin" ToRole="Article" />
+    <NavigationProperty Name="ArticleCategories" Relationship="IRPALG1ProjectModel.FK_ArticleCategory_Admin" FromRole="Admin" ToRole="ArticleCategory" />
+    <NavigationProperty Name="ArticleCategories1" Relationship="IRPALG1ProjectModel.FK_ArticleCategory_Admin1" FromRole="Admin" ToRole="ArticleCategory" />
+    <NavigationProperty Name="Menus" Relationship="IRPALG1ProjectModel.FK_Menu_Admin" FromRole="Admin" ToRole="Menu" />
+    <NavigationProperty Name="Menus1" Relationship="IRPALG1ProjectModel.FK_Menu_Admin1" FromRole="Admin" ToRole="Menu" />
+    <NavigationProperty Name="Sliders" Relationship="IRPALG1ProjectModel.FK_Slider_Admin" FromRole="Admin" ToRole="Slider" />
+    <NavigationProperty Name="Sliders1" Relationship="IRPALG1ProjectModel.FK_Slider_Admin1" FromRole="Admin" ToRole="Slider" />
+    <NavigationProperty Name="StaticPages" Relationship="IRPALG1ProjectModel.FK_StaticPage_Admin" FromRole="Admin" ToRole="StaticPage" />
+    <NavigationProperty Name="StaticPages1" Relationship="IRPALG1ProjectModel.FK_StaticPage_Admin1" FromRole="Admin" ToRole="StaticPage" />
+    <NavigationProperty Name="Links" Relationship="IRPALG1ProjectModel.AdminLink" FromRole="Admin" ToRole="Link" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="IRPALG1ProjectModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="IRPALG1ProjectModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="IRPALG1ProjectModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Admins" Relationship="IRPALG1ProjectModel.FK_Admin_AspNetUsers" FromRole="AspNetUser" ToRole="Admin" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="IRPALG1ProjectModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="IRPALG1ProjectModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="IRPALG1ProjectModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Admin_AspNetUsers">
+    <End Type="IRPALG1ProjectModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_Admin">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.Article" Role="Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="InsertingAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_Admin1">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.Article" Role="Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="UpdatingAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleCategory_Admin">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.ArticleCategory" Role="ArticleCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArticleCategory">
+        <PropertyRef Name="InsertingAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArticleCategory_Admin1">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.ArticleCategory" Role="ArticleCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArticleCategory">
+        <PropertyRef Name="UpdatingAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Admin">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.Menu" Role="Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="InsertingAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Admin1">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.Menu" Role="Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="UpdatingAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slider_Admin">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.Slider" Role="Slider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Slider">
+        <PropertyRef Name="InsertingAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slider_Admin1">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.Slider" Role="Slider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Slider">
+        <PropertyRef Name="UpdatingAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StaticPage_Admin">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.StaticPage" Role="StaticPage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaticPage">
+        <PropertyRef Name="InsertingAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StaticPage_Admin1">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="0..1" />
+    <End Type="IRPALG1ProjectModel.StaticPage" Role="StaticPage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaticPage">
+        <PropertyRef Name="UpdatingAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="IRPALG1ProjectModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="IRPALG1ProjectModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="IRPALG1ProjectModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="IRPALG1ProjectModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AdminLink">
+    <End Type="IRPALG1ProjectModel.Admin" Role="Admin" Multiplicity="*" />
+    <End Type="IRPALG1ProjectModel.Link" Role="Link" Multiplicity="*" />
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="IRPALG1ProjectModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="IRPALG1ProjectModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+</Schema>

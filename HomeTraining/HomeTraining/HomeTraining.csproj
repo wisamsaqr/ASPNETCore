@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-HomeTraining-C6A8D301-6321-4A78-BC9B-7703E6B0CDE9</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.18" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.18" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.18" />
+  </ItemGroup>
+
+</Project>

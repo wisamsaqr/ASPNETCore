@@ -1,0 +1,84 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <environment include="Development">
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <script src="~/lib/jquery/jquery.js"></script>
+        <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+        <link href="~/css/site.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+              crossorigin="anonymous"
+              asp-fallback-href="~/lib/bootstrap/css/bootstrap.css"
+              asp-fallback-test-class="sr-only"
+              asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute"
+              asp-suppress-fallback-integrity="true">
+    </environment>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <ul class="nav bg-dark">
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Index" class="nav-link">
+                        <img src="~/images/earth.jpg" height="50" width="50" />
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Create" class="nav-link">Create</a>
+                    <a asp-controller="Home" asp-action="Index" class="nav-link">List</a>
+                </li>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a asp-action="ListUsers" asp-controller="Administration" class="nav-link">
+                            Users
+                        </a>
+                        <a asp-action="ListRoles" asp-controller="Administration" class="nav-link">
+                            Roles
+                        </a>
+                    </li>
+                }
+
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <li class="nav-item">
+                        <form method="post" asp-action="Logout" asp-controller="Account">
+                            <button type="submit" class="nav-link btn btn-link" style="width:auto">
+                                Logout @User.Identity.Name
+                            </button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a asp-controller="Account" asp-action="Register" class="nav-link">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Account" asp-action="Login" class="nav-link">Login</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+        @if (IsSectionDefined("Scripts"))
+        {
+            @RenderSection("Scripts", required: true)
+        }
+    </div>
+</body>
+</html>

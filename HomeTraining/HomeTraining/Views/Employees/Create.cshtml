@@ -1,0 +1,22 @@
+﻿@model Employee
+
+<h1>Create Employee</h1>
+
+<form method="post">
+    <label>Name</label>
+    <input asp-for="Name" class="form-control" />
+
+    <label>Birthdate</label>
+    <input asp-for="Birthdate" class="form-control" />
+
+    <label>Department</label>
+    <select asp-for="DepartmentId" asp-items="ViewBag.Departments" class="form-control">
+        <option value="">Select the department</option>
+    </select>
+
+    <input type="submit" class="btn btn-primary" />
+</form>
+
+<br />
+
+<a class="btn btn-primary" href="/Employees">Cancel</a>

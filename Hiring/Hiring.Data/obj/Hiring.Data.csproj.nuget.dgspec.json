@@ -1,0 +1,130 @@
+{
+  "format": 1,
+  "restore": {
+    "G:\\LAB\\MVC\\Hiring\\Hiring.Data\\Hiring.Data.csproj": {}
+  },
+  "projects": {
+    "G:\\LAB\\MVC\\Hiring\\Hiring.Core\\Hiring.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\LAB\\MVC\\Hiring\\Hiring.Core\\Hiring.Core.csproj",
+        "projectName": "Hiring.Core",
+        "projectPath": "G:\\LAB\\MVC\\Hiring\\Hiring.Core\\Hiring.Core.csproj",
+        "packagesPath": "C:\\Users\\WisamSaqr0568872200\\.nuget\\packages\\",
+        "outputPath": "G:\\LAB\\MVC\\Hiring\\Hiring.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\WisamSaqr0568872200\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "G:\\LAB\\MVC\\Hiring\\Hiring.Data\\Hiring.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\LAB\\MVC\\Hiring\\Hiring.Data\\Hiring.Data.csproj",
+        "projectName": "Hiring.Data",
+        "projectPath": "G:\\LAB\\MVC\\Hiring\\Hiring.Data\\Hiring.Data.csproj",
+        "packagesPath": "C:\\Users\\WisamSaqr0568872200\\.nuget\\packages\\",
+        "outputPath": "G:\\LAB\\MVC\\Hiring\\Hiring.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\WisamSaqr0568872200\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "G:\\LAB\\MVC\\Hiring\\Hiring.Core\\Hiring.Core.csproj": {
+                "projectPath": "G:\\LAB\\MVC\\Hiring\\Hiring.Core\\Hiring.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

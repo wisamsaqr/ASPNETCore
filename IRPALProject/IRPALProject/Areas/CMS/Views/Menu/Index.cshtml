@@ -1,0 +1,86 @@
+﻿@model IEnumerable<IRPALProject.Models.Menu>
+@{
+    ViewBag.Title = "عرض القوائم";
+    ViewBag.Title += " - " + ViewBag.MenuTitle;
+    //ViewBag.Title += ViewBag.MenuTitle != null ? " - " + ViewBag.MenuTitle : "الرئيسية";  //trainer
+}
+
+<div class="row">
+    @if (ViewBag.Id != 0)
+    {
+        <div class="col-xs-6">
+            <a class="btn btn-default" href="/CMS/Menu/">
+                <i class="fa fa-mail-forward"></i>عودة
+            </a>
+        </div>
+    }
+    <div class="col-xs-6">
+        <a href="/CMS/Menu/Add/@ViewBag.Id" class="btn btn-success pull-right">
+            <i class="fa fa-plus"></i>
+            إضافة قائمة جديدة
+        </a>
+    </div>
+</div>
+
+<hr />
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>عنوان القائمة</th>
+                <th width="15%">الرابط</th>
+                <th width="5%">التفعيل</th>
+                <th width="17%">تاريخ الإضافة</th>
+                <th width="22%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.Title)</td>
+                    <td>@Html.DisplayFor(model => item.URL)</td>
+                    <td>@*@Html.CheckBoxFor(model => item.Active, new { @class = "ActiveChBx", @data_id = item.Id })*@</td>
+                    <td><input type="checkbox" class="ActiveChBx" data-id="@item.Id" @(item.Active ? "checked" : "" ) /></td>
+                    <td>@Html.DisplayFor(model => item.InsertedAt)</td>
+                    <td>
+                        @if (ViewBag.Id == 0)
+                        {
+                            <a href="/CMS/Menu/Index/@Html.DisplayFor(model => item.Id)" class="btn btn-info btn-xs" title="عرض القوائم الفرعية">
+                                <i class="glyphicon glyphicon-list"></i>
+                            </a>
+                        }
+                        <a href="/CMS/Menu/Edit/@Html.DisplayFor(model => item.Id)" class="btn btn-primary btn-xs">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a href="/CMS/Menu/Delete/@item.Id" class="btn btn-danger btn-xs Confirm">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">@Resources.Lang.NoItemsMsg</div>
+}
+
+@section scripts{
+    <script>
+        $(function()
+        {
+            $(".ActiveChBx").click(function ()
+            {
+                //var id = $(this).val();
+                //var id = $(this).attr("data-id");
+                var id = $(this).data("id");
+
+                $.get("/CMS/Menu/Active/" + id);
+            });
+        });
+    </script>
+}

@@ -1,0 +1,65 @@
+﻿@model IRPALProject.Models.Admin
+
+@{
+    ViewBag.Title = "Helper Experiments";
+}
+
+<!-------------------------------------------------->
+
+@{
+    <!--For Helper Methods Experiments-->
+
+    <!--
+        If the current view is strongly typed with an IEnumerable<Model> (not a Model, and this mostly happens inside
+        Index views), then invoking the Html.DisplayNameFor method the way as below (which is using reference declared
+        outside the method), would cause ambiguity (this only happens with this method). This ambiguity occurs because this
+        method has an extra advantage over the others which is the ability to reach to the proerty of the Model and the
+        Model inside IEnumerable<Model>, so when making the view strongly typed with an IEnumerable<Model> and calling the
+        method as [Html.DisplayNameFor(model => ad.InsertedAt)], the method just can't figure out the property is of a Model
+        or of Model inside the IEnumerable<Model>.
+    -->
+
+    <!--Property with Value-->
+    IRPALProject.Models.Admin ad = new IRPALProject.Models.Admin { InsertedAt = DateTime.Now };
+
+    <div>@Html.DisplayNameFor(model => ad.InsertedAt)</div>
+    <div>@Html.DisplayFor(model => ad.InsertedAt)</div>
+    <div>@Html.DisplayFor(model => ad.Id)</div>
+    <div>@Html.DisplayFor(model => ad.InsertingAdminId)</div>
+
+    <div>@Html.LabelFor(model => ad.InsertedAt)</div>
+    <div>@Html.TextBoxFor(model => ad.InsertedAt)</div>
+
+    <hr />
+
+    <!--Property without Value-->
+    IRPALProject.Models.Admin ad2 = new IRPALProject.Models.Admin();
+
+    <div>@Html.DisplayNameFor(model => ad2.InsertedAt)</div>
+    <div>@Html.DisplayFor(model => ad2.InsertedAt)</div>
+    <div>@Html.DisplayFor(model => ad2.Id)</div>
+
+    <div>@Html.LabelFor(model => ad2.InsertedAt)</div>
+    <div>@Html.TextBoxFor(model => ad2.InsertedAt)</div>
+
+    <hr />
+
+    <!--Reference Without Instanse-->
+    IRPALProject.Models.Admin ad3 = null;
+
+    <div>@Html.DisplayNameFor(model => ad3.InsertedAt)</div>
+    <div>@Html.DisplayFor(model => ad3.InsertedAt)</div>
+    <div>@Html.DisplayFor(model => ad3.Id)</div>
+
+    <div>@Html.LabelFor(model => ad3.InsertedAt)</div>
+    <div>@Html.TextBoxFor(model => ad3.InsertedAt)</div>
+
+    <!--
+        code below doesn't make sense, but it is written to show that a reference declared in lambda expression
+        is of the type of the model that the viwe is strongly typed with. And other references used insid lambda expression
+        must have been declared outside before the helper method.
+    -->
+
+    @*IRPALProject.Models.Article ar = null;
+    <div>@Html.TextBoxFor(model => ar.Published + model.Email)</div>*@
+}

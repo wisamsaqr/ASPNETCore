@@ -1,0 +1,14 @@
+﻿@using EmployeeManagement.ZZTestModels
+@model List<CMyModel>
+
+<form method="post">
+    <input type="text" asp-for="@Model[0].Num" />
+    <input type="text" asp-for="@Model[1].Num" />
+    <input type="text" asp-for="@Model[2].Num" />
+
+    @* this causes an error because it tries to get the element from the list, and the list during
+        httpget request dose not exist. So associting input element to props should be done only using []*@
+    @*<input type="text" asp-for="@Model.ElementAt(2).Num" />*@
+
+    <input type="submit" />
+</form>

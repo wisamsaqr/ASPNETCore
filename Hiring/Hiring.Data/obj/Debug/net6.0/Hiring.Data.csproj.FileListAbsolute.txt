@@ -1,0 +1,15 @@
+G:\LAB\MVC\Hiring\Hiring.Data\bin\Debug\net6.0\Hiring.Data.deps.json
+G:\LAB\MVC\Hiring\Hiring.Data\bin\Debug\net6.0\Hiring.Data.dll
+G:\LAB\MVC\Hiring\Hiring.Data\bin\Debug\net6.0\Hiring.Data.pdb
+G:\LAB\MVC\Hiring\Hiring.Data\bin\Debug\net6.0\Hiring.Core.dll
+G:\LAB\MVC\Hiring\Hiring.Data\bin\Debug\net6.0\Hiring.Core.pdb
+G:\LAB\MVC\Hiring\Hiring.Data\obj\Debug\net6.0\Hiring.Data.csproj.AssemblyReference.cache
+G:\LAB\MVC\Hiring\Hiring.Data\obj\Debug\net6.0\Hiring.Data.GeneratedMSBuildEditorConfig.editorconfig
+G:\LAB\MVC\Hiring\Hiring.Data\obj\Debug\net6.0\Hiring.Data.AssemblyInfoInputs.cache
+G:\LAB\MVC\Hiring\Hiring.Data\obj\Debug\net6.0\Hiring.Data.AssemblyInfo.cs
+G:\LAB\MVC\Hiring\Hiring.Data\obj\Debug\net6.0\Hiring.Data.csproj.CoreCompileInputs.cache
+G:\LAB\MVC\Hiring\Hiring.Data\obj\Debug\net6.0\Hiring.Data.csproj.CopyComplete
+G:\LAB\MVC\Hiring\Hiring.Data\obj\Debug\net6.0\Hiring.Data.dll
+G:\LAB\MVC\Hiring\Hiring.Data\obj\Debug\net6.0\refint\Hiring.Data.dll
+G:\LAB\MVC\Hiring\Hiring.Data\obj\Debug\net6.0\Hiring.Data.pdb
+G:\LAB\MVC\Hiring\Hiring.Data\obj\Debug\net6.0\ref\Hiring.Data.dll

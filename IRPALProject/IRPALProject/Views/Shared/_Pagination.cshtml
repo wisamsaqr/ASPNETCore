@@ -1,0 +1,59 @@
+﻿@{
+    string ActionURL = ViewBag.ActionURL;
+    int PageId = ViewBag.PageId;
+    int PagesCount = ViewBag.PagesCount;
+    int Start = ViewBag.Start;
+    int End = ViewBag.End;
+
+    <ul class="pagination pagination-lg">
+        @if (PageId == 0)
+        {
+            <li class="disabled">
+                <span>
+                    <i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i>
+                </span>
+            </li>
+            <li class="disabled"><span><i class="glyphicon glyphicon-chevron-right"></i></span></li>
+        }
+        else
+        {
+            <li>
+                <a href="@ActionURL@(!ActionURL.Contains("?") ? "?" : "&" )PageId=1">
+                    <i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+            </li>
+            <li><a href="@ActionURL@(!ActionURL.Contains("?") ? "?" : "&" )PageId=@PageId"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+        }
+
+        @for (int i = Start; i <= End; i++)
+        {
+            if (i == PageId)
+            {
+                <li class="active"><span>@(i + 1)</span></li>
+            }
+            else
+            {
+                <li><a href="@ActionURL@(!ActionURL.Contains("?") ? "?" : "&" )PageId=@(i + 1)">@(i + 1)</a></li>
+            }
+        }
+
+        @if (PageId == PagesCount - 1)
+        {
+            <li class="disabled"><span><i class="glyphicon glyphicon-chevron-left"></i></span></li>
+            <li class="disabled">
+                <span>
+                    <i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-left"></i>
+                </span>
+            </li>
+        }
+        else
+        {
+            <li><a href="@ActionURL@(!ActionURL.Contains("?") ? "?" : "&" )PageId=@(PageId+2)"><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+            <li>
+                <a href="@ActionURL@(!ActionURL.Contains("?") ? "?" : "&" )PageId=@(PagesCount)">
+                    <i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-left"></i>
+                </a>
+            </li>
+        }
+    </ul>
+}

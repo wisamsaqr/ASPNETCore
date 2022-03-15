@@ -1,0 +1,41 @@
+﻿@model IEnumerable<IRPALProject.Models.Admin>
+@{
+    ViewBag.Title = "Helper Experiments 2";
+}
+
+
+
+
+@{
+    <!--Reference Without Instanse-->
+
+    <div>@Html.DisplayNameFor(model => model.FullName)</div>
+
+
+
+
+
+    IRPALProject.Models.Admin ad = new IRPALProject.Models.Admin { FullName = "Ali" };
+
+    <div>@Html.DisplayNameFor(model => ad.FullName)</div>
+
+    
+
+    IRPALProject.Models.Article ar = new IRPALProject.Models.Article { Title = "Ali" };
+
+    <div>@Html.DisplayNameFor(model => ar.Title)</div>
+
+
+
+
+
+
+    List<IRPALProject.Models.Admin> adslist = new List<IRPALProject.Models.Admin>
+    {
+        new IRPALProject.Models.Admin { FullName = "XXX" },
+        new IRPALProject.Models.Admin { FullName = "YYY" },
+        new IRPALProject.Models.Admin { FullName = "VVV" }
+    };
+
+    <div>@Html.DisplayNameFor(model => adslist.FullName)</div>
+}

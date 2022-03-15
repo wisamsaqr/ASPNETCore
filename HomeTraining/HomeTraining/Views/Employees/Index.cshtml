@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Employee>
+
+<h1>Employees</h1>
+
+<a class="btn btn-primary" href="/Employees/Create">New Employee</a>
+
+<br />
+
+@if (Model.Any())
+{
+    <table class="table table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Birthdate</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>
+                    @employee.Id
+                </td>
+                <td>
+                    <a href="/Employees/Details/@employee.Id">@employee.Name</a>
+                </td>
+                <td>
+                    @employee.Birthdate
+                </td>
+                <td>
+                    @employee.Department.Name
+                </td>
+                <td>
+                    <a class="btn btn-warning" href="/Employees/Edit/@employee.Id">Edit</a>
+                    <a class="btn btn-danger" href="/Employees/Delete/@employee.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="alert alert-danger">No employees are there.</div>
+}

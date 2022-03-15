@@ -1,0 +1,35 @@
+﻿@model IRPALProject.Models.ArticleCategory
+
+@{
+    ViewBag.Title = "تعديل تصنيف مقال";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "أدخل تصنيف مقال", @autofocus = "autofocus" })
+                @Html.ValidationMessageFor(model => model.Title, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="حفظ" class="btn btn-primary" />
+                @Html.ActionLink("إلغاء الأمر", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

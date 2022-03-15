@@ -1,0 +1,11 @@
+﻿@model EmployeeManagement.ZZTestModels.BOuterModel
+
+<form method="post">
+    <input asp-for="OuterModelProp" />
+    <input asp-for="@Model.OuterModelProp" />
+    <input asp-for="InnerModel" />  @*this does not work*@
+    <input asp-for="InnerModel.InnerModelProp" />
+    <input asp-for="@Model.InnerModel.InnerModelProp" />
+    
+    <input type="submit" />
+</form>

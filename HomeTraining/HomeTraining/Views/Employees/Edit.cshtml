@@ -1,0 +1,25 @@
+﻿@model Employee
+
+<h1>Edit Employee</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Id"/>
+
+    <label>Name</label>
+    <input asp-for="Name" class="form-control" />
+
+    <label>Birthdate</label>
+    <input asp-for="Birthdate" class="form-control" />
+
+    <label>Department</label>
+    <select asp-for="DepartmentId" class="form-control">
+        <option value="">Select the department</option>
+        <option value="1">IT</option>
+        <option value="2">HR</option>
+        <option value="3">Accounting</option>
+    </select>
+
+    <input type="submit" class="btn btn-danger" />
+</form>
+
+<a class="btn btn-primary" href="/Employees">Cancel</a>

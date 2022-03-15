@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Load Test";
+}
+
+<p>
+    .load( url [, data ] [, complete ] )
+    <pre>
+        url
+        Type: String
+        A string containing the URL to which the request is sent.
+        data
+        Type: PlainObject or String
+        A plain object or string that is sent to the server with the request.
+        complete
+        Type: Function( String responseText, String textStatus, jqXHR jqXHR )
+        A callback function that is executed when the request completes.
+    </pre>
+</p>
+
+
+
+<button id="btn1" class="btn btn-default">
+    Load # 1
+</button>
+
+<button id="btn2" class="btn btn-primary">
+    Load # 2
+</button>
+
+<button id="btn3" class="btn btn-danger">
+    Load # 3 <span></span>
+</button>
+
+<hr />
+
+<div id="divLoad" class="jumbotron">
+
+</div>
+
+@section scripts{
+    <script>
+        $(function ()
+        {
+            $("#btn1").click(function ()
+            {
+                //next method uses GET Request Method
+                $("#divLoad").load("/AjaxExamples/Page .cities");  //This means we want to load elememt with class cities of the view returened by Page1
+            });
+
+
+            $("#btn2").click(function ()
+            {
+                //Request Method: POST
+                $("#divLoad").load("/AjaxExamples/PostRequestContent",
+                { age: 99, gender: "Male" });
+            });
+
+
+            $("#btn3").click(function ()
+            {
+                $("#btn3 span").text("loading...");
+
+                $("#divLoad").load
+                (
+                    "/AjaxExamples/PostRequestContent",
+                    {age: 99, gender: "Female"},
+                    function ()
+                    {
+                        $("#btn3 span").text("");
+                    }
+                );
+            });
+        });
+    </script>
+}

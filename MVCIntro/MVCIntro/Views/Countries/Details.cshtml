@@ -1,0 +1,20 @@
+﻿@model MVCIntro.Models.Country
+@{
+    ViewBag.Title = "Details";
+}
+
+<hr />
+
+<dl class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+    <dd>@Html.DisplayFor(model => model.Name)</dd>
+    
+    <dt>@Html.DisplayNameFor(model => model.Iso2)</dt>
+    <dd>@Html.DisplayFor(model => model.Iso2)</dd>
+
+    <dt>@Html.DisplayNameFor(model => model.Code)</dt>
+    <dd>@Html.DisplayFor(model => model.Code)</dd>
+</dl>
+
+@Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+@Html.ActionLink("Back To List", "Index", null, new { @class = "btn btn-default" })
